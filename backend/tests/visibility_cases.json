@@ -1,0 +1,20 @@
+[
+  {"name": "no rule means visible", "cond": null, "ctx": {}, "expect": true},
+  {"name": "eq true", "cond": {"q": "sex", "eq": "female"}, "ctx": {"sex": "female"}, "expect": true},
+  {"name": "eq false", "cond": {"q": "sex", "eq": "female"}, "ctx": {"sex": "male"}, "expect": false},
+  {"name": "missing value never equals", "cond": {"q": "fever", "eq": "yes"}, "ctx": {}, "expect": false},
+  {"name": "neq with missing value is false", "cond": {"q": "fever", "neq": "yes"}, "ctx": {}, "expect": false},
+  {"name": "neq with other value", "cond": {"q": "fever", "neq": "yes"}, "ctx": {"fever": "no"}, "expect": true},
+  {"name": "gte boundary", "cond": {"q": "age", "gte": 10}, "ctx": {"age": 10}, "expect": true},
+  {"name": "gte below", "cond": {"q": "age", "gte": 10}, "ctx": {"age": 9}, "expect": false},
+  {"name": "lt boundary", "cond": {"q": "age", "lt": 5}, "ctx": {"age": 5}, "expect": false},
+  {"name": "lt with missing value", "cond": {"q": "age", "lt": 5}, "ctx": {}, "expect": false},
+  {"name": "range ok", "cond": {"q": "age", "gte": 10, "lte": 55}, "ctx": {"age": 30}, "expect": true},
+  {"name": "range too old", "cond": {"q": "age", "gte": 10, "lte": 55}, "ctx": {"age": 56}, "expect": false},
+  {"name": "in list", "cond": {"q": "d", "in": ["a", "b"]}, "ctx": {"d": "b"}, "expect": true},
+  {"name": "not in list", "cond": {"q": "d", "in": ["a", "b"]}, "ctx": {"d": "c"}, "expect": false},
+  {"name": "all passes", "cond": {"all": [{"q": "sex", "eq": "female"}, {"q": "age", "gte": 10}]}, "ctx": {"sex": "female", "age": 12}, "expect": true},
+  {"name": "all fails (6 year old)", "cond": {"all": [{"q": "sex", "eq": "female"}, {"q": "age", "gte": 10}]}, "ctx": {"sex": "female", "age": 6}, "expect": false},
+  {"name": "any passes", "cond": {"any": [{"q": "a", "eq": "yes"}, {"q": "b", "eq": "yes"}]}, "ctx": {"b": "yes"}, "expect": true},
+  {"name": "not", "cond": {"not": {"q": "a", "eq": "yes"}}, "ctx": {"a": "no"}, "expect": true}
+]

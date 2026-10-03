@@ -1,0 +1,488 @@
+{
+  "version": "1.0",
+  "questions": [
+    {
+      "id": "fever",
+      "type": "yesno",
+      "label": {
+        "en": "Has the person had a fever in the last 2 weeks?",
+        "hi": "क्या पिछले 2 हफ़्तों में बुखार रहा है?"
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fever_days",
+      "type": "number",
+      "label": {
+        "en": "For how many days has the fever lasted?",
+        "hi": "बुखार कितने दिनों से है?"
+      },
+      "visibleIf": {
+        "q": "fever",
+        "eq": "yes"
+      },
+      "min": 1,
+      "max": 30,
+      "unit": {
+        "en": "days",
+        "hi": "दिन"
+      }
+    },
+    {
+      "id": "cough",
+      "type": "yesno",
+      "label": {
+        "en": "Does the person have a cough?",
+        "hi": "क्या खांसी है?"
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cough_duration",
+      "type": "choice",
+      "label": {
+        "en": "How long has the cough lasted?",
+        "hi": "खांसी कितने समय से है?"
+      },
+      "visibleIf": {
+        "q": "cough",
+        "eq": "yes"
+      },
+      "options": [
+        {
+          "value": "lt2",
+          "label": {
+            "en": "Less than 2 weeks",
+            "hi": "2 हफ़्ते से कम"
+          }
+        },
+        {
+          "value": "2to3",
+          "label": {
+            "en": "2 to 3 weeks",
+            "hi": "2 से 3 हफ़्ते"
+          }
+        },
+        {
+          "value": "gt3",
+          "label": {
+            "en": "More than 3 weeks",
+            "hi": "3 हफ़्ते से ज़्यादा"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blood_in_sputum",
+      "type": "yesno",
+      "label": {
+        "en": "Has there been blood in the phlegm?",
+        "hi": "क्या बलगम में खून आया है?"
+      },
+      "visibleIf": {
+        "q": "cough_duration",
+        "in": [
+          "2to3",
+          "gt3"
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chest_pain",
+      "type": "yesno",
+      "label": {
+        "en": "Does the person have chest pain?",
+        "hi": "क्या सीने में दर्द है?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "gte": 12
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "chest_pain_breathless",
+      "type": "yesno",
+      "label": {
+        "en": "Is the chest pain with breathlessness?",
+        "hi": "क्या सीने के दर्द के साथ सांस फूलती है?"
+      },
+      "visibleIf": {
+        "q": "chest_pain",
+        "eq": "yes"
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "weight_loss",
+      "type": "yesno",
+      "label": {
+        "en": "Has the person lost weight without trying?",
+        "hi": "क्या बिना कोशिश के वज़न घटा है?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "gte": 5
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "diabetes",
+      "type": "yesno",
+      "label": {
+        "en": "Has a health worker ever said the person has diabetes (sugar)?",
+        "hi": "क्या पहले कभी मधुमेह (शुगर) बताया गया है?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "gte": 18
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "high_bp",
+      "type": "yesno",
+      "label": {
+        "en": "Has a health worker ever said the person has high blood pressure?",
+        "hi": "क्या पहले कभी हाई ब्लड प्रेशर बताया गया है?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "gte": 18
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoker",
+      "type": "choice",
+      "label": {
+        "en": "Does the person smoke or use tobacco?",
+        "hi": "क्या तंबाकू या धूम्रपान करते हैं?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "gte": 15
+      },
+      "options": [
+        {
+          "value": "never",
+          "label": {
+            "en": "Never",
+            "hi": "कभी नहीं"
+          }
+        },
+        {
+          "value": "former",
+          "label": {
+            "en": "Used to",
+            "hi": "पहले करते थे"
+          }
+        },
+        {
+          "value": "current",
+          "label": {
+            "en": "Currently",
+            "hi": "अभी करते हैं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "cigs_per_day",
+      "type": "number",
+      "label": {
+        "en": "How many cigarettes or bidis a day?",
+        "hi": "रोज़ कितनी सिगरेट या बीड़ी?"
+      },
+      "visibleIf": {
+        "q": "smoker",
+        "eq": "current"
+      },
+      "min": 1,
+      "max": 60,
+      "unit": {
+        "en": "per day",
+        "hi": "रोज़"
+      }
+    },
+    {
+      "id": "menstrual_irregular",
+      "type": "yesno",
+      "label": {
+        "en": "Have periods been irregular in the last 3 months?",
+        "hi": "क्या पिछले 3 महीनों में माहवारी अनियमित रही है?"
+      },
+      "visibleIf": {
+        "all": [
+          {
+            "q": "sex",
+            "eq": "female"
+          },
+          {
+            "q": "age",
+            "gte": 10,
+            "lte": 55
+          }
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pregnant",
+      "type": "yesno",
+      "label": {
+        "en": "Is she pregnant?",
+        "hi": "क्या वे गर्भवती हैं?"
+      },
+      "visibleIf": {
+        "all": [
+          {
+            "q": "sex",
+            "eq": "female"
+          },
+          {
+            "q": "age",
+            "gte": 15,
+            "lte": 49
+          }
+        ]
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pregnancy_danger_signs",
+      "type": "yesno",
+      "label": {
+        "en": "Any severe headache, blurred vision, swelling of face/hands or bleeding?",
+        "hi": "क्या तेज़ सिरदर्द, धुंधला दिखना, चेहरे/हाथों में सूजन या खून बहना है?"
+      },
+      "visibleIf": {
+        "q": "pregnant",
+        "eq": "yes"
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "child_poor_feeding",
+      "type": "yesno",
+      "label": {
+        "en": "Is the child feeding or drinking poorly?",
+        "hi": "क्या बच्चा ठीक से खा-पी नहीं रहा?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "lt": 5
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    },
+    {
+      "id": "child_muac_red",
+      "type": "yesno",
+      "label": {
+        "en": "Is the child's arm (MUAC) band in the red zone?",
+        "hi": "क्या बच्चे की बाजू नापने की पट्टी (MUAC) लाल निशान पर है?"
+      },
+      "visibleIf": {
+        "q": "age",
+        "lt": 5
+      },
+      "options": [
+        {
+          "value": "yes",
+          "label": {
+            "en": "Yes",
+            "hi": "हाँ"
+          }
+        },
+        {
+          "value": "no",
+          "label": {
+            "en": "No",
+            "hi": "नहीं"
+          }
+        }
+      ]
+    }
+  ]
+}
